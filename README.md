@@ -18,3 +18,5 @@
 - HTTPs
 - Tree Shaking - remove unused code
 - Different dev and production bundles
+
+  # Parcel is Beast
