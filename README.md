@@ -36,3 +36,5 @@
   * - Links
   * - Address
   * - Contact
+
+![Screenshot (395)](https://github.com/krunalbhongade/namaste-react/assets/126875304/ab81860e-dfe1-41d6-b3e0-216bd9a2841c)
