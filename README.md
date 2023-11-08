@@ -20,3 +20,19 @@
 - Different dev and production bundles
 
   # Parcel is Beast
+
+# Food App
+
+
+  * Header
+  * - Logo
+  * - Nav Items
+  * Body
+  * - Search
+  * - Restaurant Container
+  * - Restaurant Card
+  * Footer
+  * - Copyright
+  * - Links
+  * - Address
+  * - Contact
