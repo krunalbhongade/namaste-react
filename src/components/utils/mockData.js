@@ -1,31 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-
-
-const Header = () => {
-    return(
-        <div className="header">
-        <div className="logo-container">
-        <img 
-        className="logo"
-          src="https://t3.ftcdn.net/jpg/03/74/73/78/360_F_374737839_VsxlmnN7soqOOOFFzy5kfE9H6PFMCkPX.jpg"
-          />
-        </div>
-        <div className="nav-items">
-        <ul>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Contact us</li>
-            <li>Cart</li>
-        </ul>
-
-        </div>
-
-        </div>
-    );
-};
-
 
 const resobject =  [
     {
@@ -1363,56 +1335,5 @@ const resobject =  [
         ]
     }
 ]
-    
 
-const Restaurantcard = (props) => {
-    const {resData} = props;
-    
-    const{
-        name,
-        resId,
-    } = resData?.info;
-   
-    return(
-        <div className="res-card" style ={{backgroundColor:"#f0f0f0"}}>
-        <img
-        className="res-logo" 
-        src={resData.info.image.url} alt="res-logo"
-        />
-            <h3>{name}</h3>
-            <h4>{resId}</h4>
-            <h4>{resData.info.rating.aggregate_rating}</h4>
-            <h4>{resData.order.deliveryTime}</h4>
-            <h4>{resData.distance}</h4>
-            <h4>400 For two</h4>
-           
-        </div>
-    )
-} 
-const Body = () => {
-    return(
-        <div className="body">
-            <div className="search">search</div>
-            <div className="res-container">
-            {resobject.map((restaurant) => (
-                    <Restaurantcard resData={restaurant} />
-                
-            ))};
-            </div>
-        </div>
-    );
-};
-
-
-const AppLayout = () => {
-    return(
-        <div className="App">
-      <Header />
-      <Body />
-    </div>
-    )
-}
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(<AppLayout  />);
-
+export default resobject;
