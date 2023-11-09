@@ -54,3 +54,9 @@ Named Export/Import
 =======
 ![Screenshot (395)](https://github.com/krunalbhongade/namaste-react/assets/126875304/ab81860e-dfe1-41d6-b3e0-216bd9a2841c)
 >>>>>>> 50127e13c2e9d7be77365cd9a269d4ad3683bc5e
+
+
+# React Hook
+
+-useState() - super powerful react variable
+-useEffect()
