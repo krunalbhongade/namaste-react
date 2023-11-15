@@ -4,50 +4,76 @@ import resobject from "./utils/mockData";
 import Shimmer from "./utils/Shimmer";
 
 const Body = () => {
-    const [listOfRestaurants, updateList] = useState([]);
+  const [listOfRestaurants, updateList] = useState([]);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  const [searchText, setSearchText] = useState("");
 
-    const fetchData = async () => {
-        const data = await fetch(
-            "https://dummyjson.com/products"
-        );
+  // Whenever state variable update, react triggers a reconcillation cycle (re-renders the component).
 
-        const json = await data.json();
-        console.log(json);
-        //setTimeout(()=>{updateList(resobject);console.log('timeout')}, 3000);
-        updateList(resobject);
-    };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    
+  const fetchData = async () => {
+    const data = await fetch("https://dummyjson.com/products");
 
-    return listOfRestaurants.length === 0 ? ( <Shimmer /> ) : (
-        <div className="body">
-            <div className="filter">
-                <button
-                    className="filter-btn"
-                    onClick={() => {
-                        updateList(
-                            listOfRestaurants.filter(
-                                (res) => res.info.rating.aggregate_rating > 4
-                            )
-                        );
-                        a = 20;
-                        console.log(listOfRestaurants);
-                    }}
-                >
-                    Top Rated Restaurants
-                </button>
-            </div>
-            <div className="res-container">
-                {listOfRestaurants.map((restaurant, index) => (
-                    <Restaurantcard resData={restaurant} key={index} />
-                ))}
-            </div>
-        </div>
-    );
-};
+    const json = await data.json();
+    console.log(json);
+    //setTimeout(()=>{updateList(resobject);console.log('timeout')}, 3000);
+    updateList(resobject);
+  };
+
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div className="body">
+      <div className="filter">
+      <div className="search">
+
+      <input
+      type="text"
+      className="search-box" 
+      value={searchText} 
+      onChange={(e) => {
+        setSearchText(e.target.value);
+      }}
+      />
+      <button
+       onClick={()=>{
+         // Filter the restaurant cards and update the UI
+         // searchtext
+         console.log(searchText);
+
+      }}
+      >
+      Search
+      </button>
+      </div>
+      
+         <button
+          className="filter-btn"
+          onClick={() => {
+            updateList(
+              fiteredList = listOfRestaurants.filter(
+                (res) => res.info.rating.aggregate_rating > 4
+              ));
+              setListOfRestaurant(filteredList);
+          }}
+          >
+            
+            
+        
+          Top Rated Restaurants
+        </button> 
+        
+      </div>
+      <div className="res-container">
+        {listOfRestaurants.map((restaurant, index) => (
+          <Restaurantcard resData={restaurant} key={index} />
+        ))}
+      </div>
+    </div>
+  );
+ };
 
 export default Body;
