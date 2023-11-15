@@ -28,44 +28,45 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
-      <div className="search">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              // Filter the restaurant cards and update the UI
+              // searchtext
+              console.log(searchText);
 
-      <input
-      type="text"
-      className="search-box" 
-      value={searchText} 
-      onChange={(e) => {
-        setSearchText(e.target.value);
-      }}
-      />
-      <button
-       onClick={()=>{
-         // Filter the restaurant cards and update the UI
-         // searchtext
-         console.log(searchText);
+              const filteredRestaurant = listOfRestaurants.filter(
+                (res) => res.data.name.includes(searchText)
+              );
 
-      }}
-      >
-      Search
-      </button>
-      </div>
-      
-         <button
+              setListOfRestaurant(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
+        </div>
+
+        <button
           className="filter-btn"
           onClick={() => {
             updateList(
-              fiteredList = listOfRestaurants.filter(
+              (fiteredList = listOfRestaurants.filter(
                 (res) => res.info.rating.aggregate_rating > 4
-              ));
-              setListOfRestaurant(filteredList);
+              ))
+            );
+            setListOfRestaurant(filteredList);
           }}
-          >
-            
-            
-        
+        >
           Top Rated Restaurants
-        </button> 
-        
+        </button>
       </div>
       <div className="res-container">
         {listOfRestaurants.map((restaurant, index) => (
@@ -74,6 +75,6 @@ const Body = () => {
       </div>
     </div>
   );
- };
+};
 
 export default Body;
