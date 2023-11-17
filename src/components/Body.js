@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Restaurantcard from "./Restaurantcard";
 import resobject from "./utils/mockData";
 import Shimmer from "./utils/Shimmer";
+import RestaurantMenu from "./RestaurantMenu";
 
 const Body = () => {
   const [listOfRestaurants, updateList] = useState([]);
@@ -18,7 +19,7 @@ const Body = () => {
     const data = await fetch("https://dummyjson.com/products");
 
     const json = await data.json();
-    console.log(json);
+    console.log('body data : ',json);
     //setTimeout(()=>{updateList(resobject);console.log('timeout')}, 3000);
     updateList(resobject);
   };
@@ -68,9 +69,14 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
+      <div>
+        <RestaurantMenu />
+      </div>
       <div className="res-container">
         {listOfRestaurants.map((restaurant, index) => (
+          
           <Restaurantcard resData={restaurant} key={index} />
+
         ))}
       </div>
     </div>

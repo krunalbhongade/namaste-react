@@ -57,6 +57,10 @@ Named Export/Import
 
 
 # React Hook
-
+(Normal Js utility functions)
 -useState() - super powerful react variable
 -useEffect()
+
+# Routings
+Client side Routing
+Server side Routing
