@@ -11,3 +11,6 @@ export {LOGO_URL};
 // export const GRIDWIDGET_TYPE_KEY = "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget";
 // export const RESTAURANT_TYPE_KEY = "type.googleapis.com/swiggy.presentation.food.v2.Restaurant";
 // export const OFFERS_TYPE_KEY = "type.googleapis.com/swiggy.presentation.food.v2.OfferInfoWithStyle";
+
+export const MENU_API =
+"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9622536&lng=77.6979885&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";

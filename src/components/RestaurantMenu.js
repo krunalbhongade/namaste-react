@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./utils/Shimmer";
+import { useParams } from "react-router-dom";
+import { MENU_API } from "./utils/constants";
 
 const RestaurantMenu = () => {
     const [resInfo, setResInfo] = useState([]);
+
+    const { resId } = useParams();
+    // console.log(params);
 
     useEffect(() => {
         fetchMenu();
@@ -10,10 +15,10 @@ const RestaurantMenu = () => {
 
     const fetchMenu = async () => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9622536&lng=77.6979885&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            MENU_API + resId
         );
         const json = await data.json();
-        console.log('Swiggy data : ', json);
+        // console.log('Swiggy data : ', json);
         const arrayOfCards = json.data.cards;
         const restaurant_list = "restaurant_grid_listing";
         let resData = [];
@@ -968,15 +973,35 @@ const RestaurantMenu = () => {
 
         <div className="menu">
            {/* <h1> <li>{name}</li></h1>  */}
-            <h1>{resInfo[0].info.name}</h1> 
-            
+            {/* <h1>{resInfo[0].info.name}</h1> 
+             */}
            {/* <h3>{resInfo[0].info.cuisines.join(", ")}</h3> */}
-          <h3>{resInfo[0].info.costForTwo}</h3>  
+          {/* <h3>{resInfo[0].info.costForTwo}</h3>   */}
           
-            {/* <h2>     {resInfo.map((object) => <li>{object.info.cuisines}</li>)}</h2> */}
+          {resInfo.map((object) => (
+              
+              <h1><li key={object.info.id}>
+              {object.info.name}</li></h1>
+             ))}
+
+
+            {resInfo.map((object) => (
+              
+            <li key={object.info.id}> {object.info.cuisines}</li>
+          
+           ))}
+
+           {resInfo.map((object) => (
+              
+            <li key={object.info.id}>
+            {object.info.costForTwo}</li>
+             ))}
+  
+
+          
             <ul>
             
-               <li>{resInfo[0].info.cuisines}</li>
+               {/* <li>{resInfo[0].info.cuisines}</li> */}
 
                 
            
