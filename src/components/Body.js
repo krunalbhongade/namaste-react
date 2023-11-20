@@ -20,7 +20,7 @@ const Body = () => {
     const data = await fetch("https://dummyjson.com/products");
 
     const json = await data.json();
-    console.log('body data : ',json);
+    console.log('body data : ', json);
     //setTimeout(()=>{updateList(resobject);console.log('timeout')}, 3000);
     updateList(resobject);
   };
@@ -70,15 +70,12 @@ const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div>
-        <RestaurantMenu />
-      </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant, index) => (
-          
-          <Link  key={index} to={"/restauranrs/" + index} ><Restaurantcard resData={restaurant}/></Link>
-
-        ))}
+        {
+          listOfRestaurants.map((restaurant, index) => {
+          <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id} ><Restaurantcard resData={restaurant} /></Link>
+        })
+        }
       </div>
     </div>
   );

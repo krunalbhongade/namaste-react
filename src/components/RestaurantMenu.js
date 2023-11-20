@@ -7,7 +7,7 @@ const RestaurantMenu = () => {
     const [resInfo, setResInfo] = useState([]);
 
     const { resId } = useParams();
-    // console.log(params);
+    console.log('resId :', resId);
 
     useEffect(() => {
         fetchMenu();
@@ -18,7 +18,7 @@ const RestaurantMenu = () => {
             MENU_API + resId
         );
         const json = await data.json();
-        // console.log('Swiggy data : ', json);
+        console.log('Swiggy data : ', json);
         const arrayOfCards = json.data.cards;
         const restaurant_list = "restaurant_grid_listing";
         let resData = [];
@@ -981,20 +981,12 @@ const RestaurantMenu = () => {
           {resInfo.map((object) => (
               
               <h1><li key={object.info.id}>
-              {object.info.name}</li></h1>
-             ))}
-
-
-            {resInfo.map((object) => (
-              
-            <li key={object.info.id}> {object.info.cuisines}</li>
-          
-           ))}
-
-           {resInfo.map((object) => (
-              
-            <li key={object.info.id}>
+              {object.info.name}</li>
+              <li key={object.info.id}> {object.info.cuisines}</li>
+              <li key={object.info.id}>
             {object.info.costForTwo}</li>
+              </h1>
+              
              ))}
   
 
