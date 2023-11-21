@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import Restaurantcard from "./Restaurantcard";
-import resobject from "./utils/mockData";
-import Shimmer from "./utils/Shimmer";
-import RestaurantMenu from "./RestaurantMenu";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Restaurantcard from "./Restaurantcard";
+import Shimmer from "./utils/Shimmer";
 
 const Body = () => {
-  const [listOfRestaurants, updateList] = useState([]);
-
+  const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   // Whenever state variable update, react triggers a reconcillation cycle (re-renders the component).
@@ -17,12 +14,22 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://dummyjson.com/products");
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+    );
 
     const json = await data.json();
-    console.log('body data : ', json);
-    //setTimeout(()=>{updateList(resobject);console.log('timeout')}, 3000);
-    updateList(resobject);
+    const arrayOfCards = json.data.cards;
+    const restaurant_list = "restaurant_grid_listing";
+
+    for (const cardObj of arrayOfCards) {
+      if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
+        const resData =
+          cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+          setListOfRestaurant(resData);
+          console.log('resData : ',resData);
+      }
+    }
   };
 
   return listOfRestaurants.length === 0 ? (
@@ -73,8 +80,14 @@ const Body = () => {
       <div className="res-container">
         {
           listOfRestaurants.map((restaurant, index) => {
-          <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id} ><Restaurantcard resData={restaurant} /></Link>
-        })
+
+            return (
+              <div>
+                <h1>{restaurant.info.id}</h1>
+                <Link key={restaurant.info.id} to={"/restaurants/" + restaurant.info.id} ><Restaurantcard key={index} resData={restaurant} /></Link>
+              </div>
+            )
+          })
         }
       </div>
     </div>
