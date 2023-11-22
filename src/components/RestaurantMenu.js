@@ -23,8 +23,12 @@ const RestaurantMenu = () => {
         const restaurant_list = "restaurant_grid_listing";
         let resData = [];
         for (const cardObj of arrayOfCards) {
-            if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
-                resData = cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            if (cardObj.groupedCard && cardObj.groupedCard.cardGroupMap.REGULAR.cards) {
+                for(const item of cardObj.groupedCard.cardGroupMap.REGULAR.cards){
+                    if (item.card.card && item.card.card.itemCards) {
+                        resData = item.card.card.itemCards;
+                    }
+                }
             }
         }
         setResInfo(resData);
@@ -964,7 +968,6 @@ const RestaurantMenu = () => {
     // 
     };
     console.log('resInfo : ', resInfo);
-    console.log('resInfo : ', resInfo);
 
     if(resInfo === null ) return <Shimmer />
     
@@ -980,12 +983,15 @@ const RestaurantMenu = () => {
           
           {resInfo.map((object) => (
               
-              <h1><li key={object.info.id}>
-              {object.info.name}</li>
-              <li key={object.info.id}> {object.info.cuisines}</li>
-              <li key={object.info.id}>
-            {object.info.costForTwo}</li>
-              </h1>
+             
+              
+                
+
+              <li className="category" key={object.card.info.id}> {object.card.info.category} - {object.card.info.name}   </li>
+          
+              
+             
+             
               
              ))}
   
