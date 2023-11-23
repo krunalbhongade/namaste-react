@@ -2,36 +2,39 @@ import { useEffect, useState } from "react";
 import Shimmer from "./utils/Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "./utils/constants";
+import useRestaurantMenu from "./utils/useRestaurantMenu";
+
 
 const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState([]);
+    // const [resInfo, setResInfo] = useState([]);
 
     const { resId } = useParams();
-    console.log('resId :', resId);
+    const resInfo = useRestaurantMenu(resId);
+   
+    if(resInfo === null ) return <Shimmer />
+    // useEffect(() => {
+    //     fetchMenu();
+    // }, []);
 
-    useEffect(() => {
-        fetchMenu();
-    }, []);
-
-    const fetchMenu = async () => {
-        const data = await fetch(
-            MENU_API + resId
-        );
-        const json = await data.json();
-        console.log('Swiggy data : ', json);
-        const arrayOfCards = json.data.cards;
-        const restaurant_list = "restaurant_grid_listing";
-        let resData = [];
-        for (const cardObj of arrayOfCards) {
-            if (cardObj.groupedCard && cardObj.groupedCard.cardGroupMap.REGULAR.cards) {
-                for(const item of cardObj.groupedCard.cardGroupMap.REGULAR.cards){
-                    if (item.card.card && item.card.card.itemCards) {
-                        resData = item.card.card.itemCards;
-                    }
-                }
-            }
-        }
-        setResInfo(resData);
+    // const fetchMenu = async () => {
+    //     const data = await fetch(
+    //         MENU_API + resId
+    //     );
+    //     const json = await data.json();
+    //     console.log('Swiggy data : ', json);
+    //     const arrayOfCards = json.data.cards;
+    //     const restaurant_list = "restaurant_grid_listing";
+    //     let resData = [];
+    //     for (const cardObj of arrayOfCards) {
+    //         if (cardObj.groupedCard && cardObj.groupedCard.cardGroupMap.REGULAR.cards) {
+    //             for(const item of cardObj.groupedCard.cardGroupMap.REGULAR.cards){
+    //                 if (item.card.card && item.card.card.itemCards) {
+    //                     resData = item.card.card.itemCards;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     setResInfo(resData);
        
         // setResInfo([{
         //     "info": {
@@ -967,9 +970,9 @@ const RestaurantMenu = () => {
         // ])
     // 
     };
-    console.log('resInfo : ', resInfo);
+    // console.log('resInfo : ', resInfo);
 
-    if(resInfo === null ) return <Shimmer />
+   
     
     // const {name,} = resInfo?.cards[0]?.info;
     return  (
@@ -1007,6 +1010,6 @@ const RestaurantMenu = () => {
             </ul>
         </div>
     );
-};
+
 
 export default RestaurantMenu;
