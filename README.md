@@ -56,6 +56,7 @@ Named Export/Import
 >>>>>>> 50127e13c2e9d7be77365cd9a269d4ad3683bc5e
 
 Online Status
+shows offline status too when it goes offline
 ![Screenshot (1)](https://github.com/krunalbhongade/namaste-react/assets/126875304/cc4d2011-5171-4b01-a0e1-55a0f411a875)
 
 # React Hook
