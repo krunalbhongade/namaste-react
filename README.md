@@ -1,7 +1,7 @@
 # Namaste React 
 
 # Parcel
-*Parcel is a beast*
+*Parcel is a Beast*
 - Dev Build
 - Local Server
 -  HMR = Hot Module Replacement 
